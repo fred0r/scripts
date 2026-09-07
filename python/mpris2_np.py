@@ -29,6 +29,8 @@
 
 ###
 # ChangeLog:
+#  0.5.0 - grawity:
+#   * port to Python 3 (WeeChat >= 3.0)
 #  0.4.3 - grawity:
 #   * allow the default player to be set
 #  0.4.2 - grawity:
@@ -48,15 +50,13 @@
 #   * first version
 ###
 
-from __future__ import print_function
-
 import dbus
 
 try:
     import weechat
     weechat.register('mpris2_np',
                      'Mantas Mikulėnas <grawity@gmail.com>',
-                     '0.4.3',
+                     '0.5.0',
                      'BSD',
                      'Print information on the currently played song',
                      '',
@@ -128,8 +128,6 @@ def print_info(data, buffer, args):
                     msg += u' from "%s"' % album
                 if year:
                     msg += u' (%s)' % year
-
-            msg = msg.encode('utf-8')
 
         except dbus.exceptions.DBusException as e:
             if e.get_dbus_name() == 'org.freedesktop.DBus.Error.ServiceUnknown':
